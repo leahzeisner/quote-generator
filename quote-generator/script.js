@@ -13,14 +13,14 @@ let apiQuotes = []
 
 
 // Show Loading
-function loading() {
+function showLoadingSpinner() {
     loader.hidden = false;
     quoteContainer.hidden = true;
 }
 
 
 // Hide Loading
-function complete() {
+function hideLoadingSpinner() {
     loader.hidden = true;
     quoteContainer.hidden = false;
 }
@@ -28,7 +28,7 @@ function complete() {
 
 // Show New Quote
 function newQuote() {
-    loading()
+    showLoadingSpinner()
     const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)]
 
     if (!quote.author) {
@@ -44,13 +44,13 @@ function newQuote() {
     }
     quoteText.textContent = quote.text
 
-    complete()
+    hideLoadingSpinner()
 }
 
 
 // Get Quotes From API
 async function getQuotes() {
-    loading()
+    showLoadingSpinner()
     const apiUrl = 'https://type.fit/api/quotes';
 
     try {
